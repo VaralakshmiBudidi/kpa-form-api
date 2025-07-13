@@ -29,26 +29,28 @@ def filter_wheel_forms(
     db: Session = Depends(get_db)
 ):
     result = get_wheels(db, formNumber, submittedBy, submittedDate)
-    formatted_data = []
-    for item in result:
-        formatted_data.append({
-            "formNumber": item.formNumber,
-            "submittedBy": item.submittedBy,
-            "submittedDate": str(item.submittedDate),
-            "fields": {
-                "treadDiameterNew": item.fields.get("treadDiameterNew"),
-                "lastShopIssueSize": item.fields.get("lastShopIssueSize"),
-                "condemningDia": item.fields.get("condemningDia"),
-                "wheelGauge": item.fields.get("wheelGauge")
-            }
-        })
-    if len(formatted_data)==0:
+
+    if not result:
         return {
-            "success":True,
-            "message":"No records found"
+            "success": True,
+            "message": "No records found"
         }
+
+    item = result[0]
+    formatted_data = {
+        "formNumber": item.formNumber,
+        "submittedBy": item.submittedBy,
+        "submittedDate": str(item.submittedDate),
+        "fields": {
+            "treadDiameterNew": item.fields.get("treadDiameterNew"),
+            "lastShopIssueSize": item.fields.get("lastShopIssueSize"),
+            "condemningDia": item.fields.get("condemningDia"),
+            "wheelGauge": item.fields.get("wheelGauge")
+        }
+    }
+
     return {
         "success": True,
-        "message": "Filtered wheel specification forms fetched successfully.",
+        "message": "Wheel specification form fetched successfully.",
         "data": formatted_data
     }
