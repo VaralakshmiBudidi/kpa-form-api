@@ -1,11 +1,14 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base, Session
+from dotenv import load_dotenv
 
-DATABASE_URL = "postgresql://postgres:varalaxmi%402023@localhost:5432/kpa_db"
+load_dotenv()  # Load variables from .env
+
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
 Base = declarative_base()
 
 def get_db():
@@ -14,3 +17,4 @@ def get_db():
         yield db
     finally:
         db.close()
+

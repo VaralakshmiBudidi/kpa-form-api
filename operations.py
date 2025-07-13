@@ -10,7 +10,7 @@ def create_wheel(db: Session, wheel: Wheel):
     if existing:
         raise HTTPException(
             status_code=400,
-            detail=f"Form number '{wheel.formNumber}' already exists."
+            detail=f"Form number {wheel.formNumber} already exists."
         )
 
     # Proceed to insert if not exists
