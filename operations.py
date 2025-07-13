@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from schemas import Wheel
-from models import WheelSpecifications
+from app.schemas import Wheel
+from app.models import WheelSpecifications
 from sqlalchemy import func
 from fastapi import HTTPException
 

@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 from datetime import date
-from schemas import Wheel
-from db_connection import get_db
-from operations import create_wheel, get_wheels
+from app.schemas import Wheel
+from app.db_connection import get_db
+from app.operations import create_wheel, get_wheels
 
 router = APIRouter(prefix="/api/forms/wheel-specifications", tags=["Wheel Specs"])
 
