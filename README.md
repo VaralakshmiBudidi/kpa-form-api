@@ -24,9 +24,9 @@ pip package manager
   Configure your local database URL in .env.
 
 **4. Run the FastAPI server locally**
-  uvicorn main:app --reload
+  uvicorn app.main:app --reload
         (or)
-  python -m uvicorn main:app --reload
+  python -m uvicorn app.main:app --reload
   The API will be available at: http://127.0.0.1:8000
 
 **5. Test API endpoints**
